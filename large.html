@@ -1,0 +1,365 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Splitting Large Datasets &mdash; OpenDroneMap 0.6 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="OpenDroneMap 0.6 documentation" href="index.html"/>
+        <link rel="next" title="Code Reference" href="api.html"/>
+        <link rel="prev" title="Outputs" href="outputs.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> OpenDroneMap
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ODMinstallation.html">ODM Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ODMinstallation.html#hardware-recommendations">Hardware Recommendations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ODMinstallation.html#docker-installation-cross-platform">Docker Installation (cross-platform)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ODMinstallation.html#install-docker-on-windows">Install Docker on Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ODMinstallation.html#install-docker-on-macos-linux">Install Docker on macOS/Linux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ODMinstallation.html#running-odm-webodm">Running ODM/WebODM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ODMinstallation.html#build-your-docker-image">Build your docker image</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ODMinstallation.html#native-installation-ubuntu-16-04">Native Installation (Ubuntu 16.04)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ODMinstallation.html#setting-environment-variables">Setting environment variables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="using.html#docker">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using.html#native">Native</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using.html#command-line-arguments">Command Line Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using.html#ground-control-points">Ground Control Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using.html#tutorials">Tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="using.html#creating-high-quality-orthophotos">Creating High Quality Orthophotos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using.html#creating-digital-terrain-models">Creating Digital Terrain Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="using.html#video-reconstruction-developers-only">Video Reconstruction (Developers Only)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="using.html#building-with-slam-support">Building with SLAM support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using.html#calibrating-the-camera">Calibrating the camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using.html#running-opendronemap-from-a-video">Running OpenDroneMap from a video</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="using.html#camera-calibration">Camera Calibration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="using.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using.html#usage-calibrate-chessboard">Usage: Calibrate chessboard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using.html#usage-undistort-photos">Usage: undistort photos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using.html#docker-usage-for-undistorting-images">Docker Usage for undistorting images</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="outputs.html">Outputs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="outputs.html#point-cloud">Point Cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outputs.html#d-textured-model">3D Textured Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outputs.html#orthophoto">Orthophoto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outputs.html#dtm-dsm">DTM/DSM</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Splitting Large Datasets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#calibrate-images">Calibrate images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#local-split-merge">Local Split-Merge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#distributed-split-merge">Distributed Split-Merge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#limitations">Limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#aknowledgments">Aknowledgments</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Code Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flying.html">Flying tips</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">How to contribute</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#community-forum">Community Forum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#reporting-bugs">Reporting Bugs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#template-for-submitting-bug-reports">Template For Submitting Bug Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#pull-requests">Pull Requests</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OpenDroneMap</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Splitting Large Datasets</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/large.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="splitting-large-datasets">
+<h1>Splitting Large Datasets<a class="headerlink" href="#splitting-large-datasets" title="Permalink to this headline">¶</a></h1>
+<p>Starting with ODM version <code class="docutils literal notranslate"><span class="pre">0.6.0</span></code> you can split up very large datasets into manageable chunks (called submodels), running the pipeline on each chunk, and then producing merged DEMs, orthophotos and point clouds. The process is referred to as “split-merge”.</p>
+<p>Why might you use the split-merge pipeline? If you have a very large number of images in your dataset, split-merge will help make the processing more manageable on a large machine (it will require less memory). If you have many machines all connected to the same network you can also process the submodels in parallel, thus allowing for horizontal scaling and processing thousands of images more quickly.</p>
+<p>Split-merge works in WebODM out of the box as long as the processing nodes support split-merge, by enabling the <code class="docutils literal notranslate"><span class="pre">--split</span></code> option when creating a new task.</p>
+<div class="section" id="calibrate-images">
+<h2>Calibrate images<a class="headerlink" href="#calibrate-images" title="Permalink to this headline">¶</a></h2>
+<p>Image calibration is recommended (but not required) for large datasets because error propagation due to image distortion could cause a bowl effect on the models. Calibration instructions can be found at <a class="reference internal" href="using.html#calibration"><span class="std std-ref">Calibrating the camera</span></a>.</p>
+</div>
+<div class="section" id="local-split-merge">
+<h2>Local Split-Merge<a class="headerlink" href="#local-split-merge" title="Permalink to this headline">¶</a></h2>
+<p>Splitting a dataset into more manageable submodels and sequentially processing all submodels on the same machine is easy! Just use <code class="docutils literal notranslate"><span class="pre">--split</span></code> and <code class="docutils literal notranslate"><span class="pre">--split-overlap</span></code> to decide the the average number of images per submodels and the overlap (in meters) between submodels respectively:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">ti</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">project</span><span class="p">:</span><span class="o">/</span><span class="n">datasets</span><span class="o">/</span><span class="n">code</span> <span class="n">opendronemap</span><span class="o">/</span><span class="n">odm</span> <span class="o">--</span><span class="n">project</span><span class="o">-</span><span class="n">path</span> <span class="o">/</span><span class="n">datasets</span> <span class="o">--</span><span class="n">split</span> <span class="mi">400</span> <span class="o">--</span><span class="n">split</span><span class="o">-</span><span class="n">overlap</span> <span class="mi">100</span>
+</pre></div>
+</div>
+<p>If you already know how you want to split the dataset, you can provide that information and it will be used instead of the clustering algorithm.</p>
+<p>The grouping can be provided by adding a file named image_groups.txt in the main dataset folder. The file should have one line per image. Each line should have two words: first the name of the image and second the name of the group it belongs to. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">01.</span><span class="n">jpg</span> <span class="n">A</span>
+<span class="mf">02.</span><span class="n">jpg</span> <span class="n">A</span>
+<span class="mf">03.</span><span class="n">jpg</span> <span class="n">B</span>
+<span class="mf">04.</span><span class="n">jpg</span> <span class="n">B</span>
+<span class="mf">05.</span><span class="n">jpg</span> <span class="n">C</span>
+</pre></div>
+</div>
+<p>will create 3 submodels. Make sure to pass <code class="docutils literal notranslate"><span class="pre">--split-overlap</span> <span class="pre">0</span></code> if you manually provide a <code class="docutils literal notranslate"><span class="pre">image_groups.txt</span></code> file.</p>
+</div>
+<div class="section" id="distributed-split-merge">
+<h2>Distributed Split-Merge<a class="headerlink" href="#distributed-split-merge" title="Permalink to this headline">¶</a></h2>
+<p>ODM can also automatically distribute the processing of each submodel to multiple machines via <a class="reference external" href="https://github.com/OpenDroneMap/NodeODM">NodeODM</a> nodes, orchestrated via <a class="reference external" href="https://github.com/OpenDroneMap/ClusterODM">ClusterODM</a>.</p>
+<p>The first step is start ClusterODM:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">ti</span> <span class="o">-</span><span class="n">p</span> <span class="mi">3001</span><span class="p">:</span><span class="mi">3000</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8080</span><span class="p">:</span><span class="mi">8080</span> <span class="n">opendronemap</span><span class="o">/</span><span class="n">clusterodm</span>
+</pre></div>
+</div>
+<p>Then on each machine you want to use for processing, launch a NodeODM instance via:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">ti</span> <span class="o">-</span><span class="n">p</span> <span class="mi">3000</span><span class="p">:</span><span class="mi">3000</span> <span class="n">opendronemap</span><span class="o">/</span><span class="n">nodeodm</span>
+</pre></div>
+</div>
+<p>Connect via telnet to ClusterODM and add the IP addresses/port of the machines running NodeODM:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ telnet &lt;cluster-odm-ip&gt; 8080
+Connected to &lt;cluster-odm-ip&gt;.
+Escape character is &#39;^]&#39;.
+[...]
+# node add &lt;node-odm-ip-1&gt; 3000
+# node add &lt;node-odm-ip-2&gt; 3000
+[...]
+# node list
+1) &lt;node-odm-ip-1&gt;:3000 [online] [0/2] &lt;version 1.5.1&gt;
+2) &lt;node-odm-ip-2&gt;:3000 [online] [0/2] &lt;version 1.5.1&gt;
+</pre></div>
+</div>
+<p>Make sure you are running version <code class="docutils literal notranslate"><span class="pre">1.5.1</span></code> or higher of the NodeODM API.</p>
+<p>At this point, simply use the <code class="docutils literal notranslate"><span class="pre">--sm-cluster</span></code> option to enable distributed split-merge:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">ti</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">project</span><span class="p">:</span><span class="o">/</span><span class="n">datasets</span><span class="o">/</span><span class="n">code</span> <span class="n">opendronemap</span><span class="o">/</span><span class="n">odm</span> <span class="o">--</span><span class="n">project</span><span class="o">-</span><span class="n">path</span> <span class="o">/</span><span class="n">datasets</span> <span class="o">--</span><span class="n">split</span> <span class="mi">400</span> <span class="o">--</span><span class="n">split</span><span class="o">-</span><span class="n">overlap</span> <span class="mi">100</span> <span class="o">--</span><span class="n">sm</span><span class="o">-</span><span class="n">cluster</span> <span class="n">http</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">cluster</span><span class="o">-</span><span class="n">odm</span><span class="o">-</span><span class="n">ip</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">3001</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="limitations">
+<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
+<p>The 3D textured meshes are currently not being merged as part of the workflow (only point clouds, DEMs and orthophotos are).</p>
+<p>GCPs are fully supported, however, there needs to be at least 3 GCP points on each submodel for the georeferencing to take place. If a submodel has less than 3 GCPs, a combination of the remaining GCPs + EXIF data will be used instead (which is going to be less accurate). We recommend using the <code class="docutils literal notranslate"><span class="pre">image_groups.txt</span></code> file to accurately control the submodel split when using GCPs.</p>
+</div>
+<div class="section" id="aknowledgments">
+<h2>Aknowledgments<a class="headerlink" href="#aknowledgments" title="Permalink to this headline">¶</a></h2>
+<p>Huge props to Pau and the folks at Mapillary for their amazing contributions to OpenDroneMap through their OpenSfM code, which is a key component of the split-merge pipeline. We look forward to further pushing the limits of OpenDroneMap and seeing how big a dataset we can process.</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api.html" class="btn btn-neutral float-right" title="Code Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="outputs.html" class="btn btn-neutral" title="Outputs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, OpenDroneMap.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.6',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,764 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Usage &mdash; OpenDroneMap 0.6 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="OpenDroneMap 0.6 documentation" href="index.html"/>
+        <link rel="next" title="Outputs" href="outputs.html"/>
+        <link rel="prev" title="ODM Installation" href="ODMinstallation.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> OpenDroneMap
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ODMinstallation.html">ODM Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ODMinstallation.html#hardware-recommendations">Hardware Recommendations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ODMinstallation.html#docker-installation-cross-platform">Docker Installation (cross-platform)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ODMinstallation.html#install-docker-on-windows">Install Docker on Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ODMinstallation.html#install-docker-on-macos-linux">Install Docker on macOS/Linux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ODMinstallation.html#running-odm-webodm">Running ODM/WebODM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ODMinstallation.html#build-your-docker-image">Build your docker image</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ODMinstallation.html#native-installation-ubuntu-16-04">Native Installation (Ubuntu 16.04)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ODMinstallation.html#setting-environment-variables">Setting environment variables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#docker">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#native">Native</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#command-line-arguments">Command Line Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ground-control-points">Ground Control Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tutorials">Tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-high-quality-orthophotos">Creating High Quality Orthophotos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-digital-terrain-models">Creating Digital Terrain Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#video-reconstruction-developers-only">Video Reconstruction (Developers Only)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#building-with-slam-support">Building with SLAM support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#calibrating-the-camera">Calibrating the camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-opendronemap-from-a-video">Running OpenDroneMap from a video</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#camera-calibration">Camera Calibration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage-calibrate-chessboard">Usage: Calibrate chessboard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage-undistort-photos">Usage: undistort photos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docker-usage-for-undistorting-images">Docker Usage for undistorting images</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="outputs.html">Outputs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="outputs.html#point-cloud">Point Cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outputs.html#d-textured-model">3D Textured Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outputs.html#orthophoto">Orthophoto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outputs.html#dtm-dsm">DTM/DSM</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="large.html">Splitting Large Datasets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="large.html#calibrate-images">Calibrate images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="large.html#local-split-merge">Local Split-Merge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="large.html#distributed-split-merge">Distributed Split-Merge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="large.html#limitations">Limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="large.html#aknowledgments">Aknowledgments</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Code Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flying.html">Flying tips</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">How to contribute</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#community-forum">Community Forum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#reporting-bugs">Reporting Bugs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#template-for-submitting-bug-reports">Template For Submitting Bug Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#pull-requests">Pull Requests</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OpenDroneMap</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Usage</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/using.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="docker">
+<span id="docker-usage"></span><h2>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h2>
+<p>There are two methods for running with docker. One pulls a pre-built image from the docker hub. This is the most reliable. You can also <a class="reference internal" href="ODMinstallation.html#docker-installation"><span class="std std-ref">build your own image</span></a>. In either case, the run command is the same, what you will change is the name of the image. For the docker hub image, use <code class="docutils literal notranslate"><span class="pre">opendronemap/odm</span></code>. For an image you built yourself, use that image name (in our case, <code class="docutils literal notranslate"><span class="pre">my_odm_image</span></code>).:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">ti</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">project</span><span class="p">:</span><span class="o">/</span><span class="n">datasets</span><span class="o">/</span><span class="n">code</span> <span class="o">&lt;</span><span class="n">my_odm_image</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">project</span><span class="o">-</span><span class="n">path</span> <span class="o">/</span><span class="n">datasets</span>
+</pre></div>
+</div>
+<p>Where /my/project is the path to your project containing an <code class="docutils literal notranslate"><span class="pre">images</span></code> folder (/my/project/images). <code class="docutils literal notranslate"><span class="pre">-v</span></code> is used to connect folders in the docker container to local folders. See <a class="reference internal" href="outputs.html"><span class="doc">Outputs</span></a> for reference on the project layout.</p>
+<p>To pass in custom parameters to the run.py script, simply pass it as arguments to the docker run command. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">ti</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">project</span><span class="p">:</span><span class="o">/</span><span class="n">datasets</span><span class="o">/</span><span class="n">code</span> <span class="o">&lt;</span><span class="n">my_odm_image</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">project</span><span class="o">-</span><span class="n">path</span> <span class="o">/</span><span class="n">datasets</span> <span class="o">--</span><span class="n">resize</span><span class="o">-</span><span class="n">to</span> <span class="mi">1800</span> <span class="o">--</span><span class="n">dsm</span>
+</pre></div>
+</div>
+<p>If you want to pass in custom parameters using the settings.yaml file, you can pass it as a -v volume binding:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker run -ti --rm -v $(pwd)/settings.yaml:/code/settings.yaml -v /my/project:/datasets/code &lt;my_odm_image&gt; --project-path /datasets --resize-to 1800 --dsm
+</pre></div>
+</div>
+<p>For more information about Docker, check out their <a class="reference external" href="https://docs.docker.com/">docs</a>.</p>
+</div>
+<div class="section" id="native">
+<span id="native-usage"></span><h2>Native<a class="headerlink" href="#native" title="Permalink to this headline">¶</a></h2>
+<p>First thing you need to do is set the project path. Edit the <code class="docutils literal notranslate"><span class="pre">settings.yaml</span></code> file to add your projects folder:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># This line is really important to set up properly</span>
+<span class="n">project_path</span><span class="p">:</span> <span class="s1">&#39;&#39;</span> <span class="c1"># Example: &#39;/home/user/ODMProjects&#39;</span>
+
+<span class="c1"># The rest of the settings will default to the values set unless you uncomment and change them</span>
+<span class="c1">#resize_to: 2400</span>
+</pre></div>
+</div>
+<p>You must change <code class="docutils literal notranslate"><span class="pre">project_path:</span> <span class="pre">''</span></code> to add an absolute path to somewhere on your machine. Whenever you run a new project, it will be saved here.</p>
+<p>To use OpenDroneMap run the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">images</span> <span class="o">&lt;/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">images</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">arguments</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">project</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Then sit back, grab a coffee and wait. You only have to specify <code class="docutils literal notranslate"><span class="pre">--images</span> <span class="pre">&lt;/path/to/images&gt;</span></code> on the first run.</p>
+</div>
+<div class="section" id="command-line-arguments">
+<span id="arguments"></span><h2>Command Line Arguments<a class="headerlink" href="#command-line-arguments" title="Permalink to this headline">¶</a></h2>
+<p>Arguments:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+<span class="o">--</span><span class="n">images</span> <span class="o">&lt;</span><span class="n">path</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">-</span><span class="n">i</span> <span class="o">&lt;</span><span class="n">path</span><span class="o">&gt;</span>
+                      <span class="n">Path</span> <span class="n">to</span> <span class="nb">input</span> <span class="n">images</span>
+<span class="o">--</span><span class="n">project</span><span class="o">-</span><span class="n">path</span> <span class="o">&lt;</span><span class="n">path</span><span class="o">&gt;</span>
+                      <span class="n">Path</span> <span class="n">to</span> <span class="n">the</span> <span class="n">project</span> <span class="n">folder</span>
+<span class="o">--</span><span class="n">resize</span><span class="o">-</span><span class="n">to</span> <span class="o">&lt;</span><span class="n">integer</span><span class="o">&gt;</span>
+                      <span class="n">resizes</span> <span class="n">images</span> <span class="n">by</span> <span class="n">the</span> <span class="n">largest</span> <span class="n">side</span> <span class="k">for</span> <span class="n">opensfm</span><span class="o">.</span> <span class="n">Set</span> <span class="n">to</span>
+                      <span class="o">-</span><span class="mi">1</span> <span class="n">to</span> <span class="n">disable</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span> <span class="mi">2048</span>
+<span class="o">--</span><span class="n">end</span><span class="o">-</span><span class="k">with</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">-</span><span class="n">e</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span>
+                      <span class="n">Can</span> <span class="n">be</span> <span class="n">one</span> <span class="n">of</span><span class="p">:</span><span class="n">dataset</span> <span class="o">|</span> <span class="n">split</span> <span class="o">|</span> <span class="n">merge</span> <span class="o">|</span> <span class="n">opensfm</span> <span class="o">|</span> <span class="n">mve</span>
+                      <span class="o">|</span> <span class="n">odm_filterpoints</span> <span class="o">|</span> <span class="n">odm_meshing</span> <span class="o">|</span> <span class="n">mvs_texturing</span> <span class="o">|</span>
+                      <span class="n">odm_georeferencing</span> <span class="o">|</span> <span class="n">odm_dem</span> <span class="o">|</span> <span class="n">odm_orthophoto</span>
+<span class="o">--</span><span class="n">rerun</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">-</span><span class="n">r</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span>
+                      <span class="n">Can</span> <span class="n">be</span> <span class="n">one</span> <span class="n">of</span><span class="p">:</span><span class="n">dataset</span> <span class="o">|</span> <span class="n">split</span> <span class="o">|</span> <span class="n">merge</span> <span class="o">|</span> <span class="n">opensfm</span> <span class="o">|</span> <span class="n">mve</span>
+                      <span class="o">|</span> <span class="n">odm_filterpoints</span> <span class="o">|</span> <span class="n">odm_meshing</span> <span class="o">|</span> <span class="n">mvs_texturing</span> <span class="o">|</span>
+                      <span class="n">odm_georeferencing</span> <span class="o">|</span> <span class="n">odm_dem</span> <span class="o">|</span> <span class="n">odm_orthophoto</span>
+<span class="o">--</span><span class="n">rerun</span><span class="o">-</span><span class="nb">all</span>           <span class="n">force</span> <span class="n">rerun</span> <span class="n">of</span> <span class="nb">all</span> <span class="n">tasks</span>
+<span class="o">--</span><span class="n">rerun</span><span class="o">-</span><span class="kn">from</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span>
+                      <span class="n">Can</span> <span class="n">be</span> <span class="n">one</span> <span class="n">of</span><span class="p">:</span><span class="n">dataset</span> <span class="o">|</span> <span class="n">split</span> <span class="o">|</span> <span class="n">merge</span> <span class="o">|</span> <span class="n">opensfm</span> <span class="o">|</span> <span class="n">mve</span>
+                      <span class="o">|</span> <span class="n">odm_filterpoints</span> <span class="o">|</span> <span class="n">odm_meshing</span> <span class="o">|</span> <span class="n">mvs_texturing</span> <span class="o">|</span>
+                      <span class="n">odm_georeferencing</span> <span class="o">|</span> <span class="n">odm_dem</span> <span class="o">|</span> <span class="n">odm_orthophoto</span>
+<span class="o">--</span><span class="n">video</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span>      <span class="n">Path</span> <span class="n">to</span> <span class="n">the</span> <span class="n">video</span> <span class="n">file</span> <span class="n">to</span> <span class="n">process</span>
+<span class="o">--</span><span class="n">slam</span><span class="o">-</span><span class="n">config</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span>
+                      <span class="n">Path</span> <span class="n">to</span> <span class="n">config</span> <span class="n">file</span> <span class="k">for</span> <span class="n">orb</span><span class="o">-</span><span class="n">slam</span>
+<span class="o">--</span><span class="n">proj</span> <span class="o">&lt;</span><span class="n">PROJ4</span> <span class="n">string</span><span class="o">&gt;</span>
+                      <span class="n">Projection</span> <span class="n">used</span> <span class="n">to</span> <span class="n">transform</span> <span class="n">the</span> <span class="n">model</span> <span class="n">into</span> <span class="n">geographic</span>
+                      <span class="n">coordinates</span>
+<span class="o">--</span><span class="nb">min</span><span class="o">-</span><span class="n">num</span><span class="o">-</span><span class="n">features</span> <span class="o">&lt;</span><span class="n">integer</span><span class="o">&gt;</span>
+                      <span class="n">Minimum</span> <span class="n">number</span> <span class="n">of</span> <span class="n">features</span> <span class="n">to</span> <span class="n">extract</span> <span class="n">per</span> <span class="n">image</span><span class="o">.</span> <span class="n">More</span>
+                      <span class="n">features</span> <span class="n">leads</span> <span class="n">to</span> <span class="n">better</span> <span class="n">results</span> <span class="n">but</span> <span class="n">slower</span> <span class="n">execution</span><span class="o">.</span>
+                      <span class="n">Default</span><span class="p">:</span> <span class="mi">8000</span>
+<span class="o">--</span><span class="n">matcher</span><span class="o">-</span><span class="n">neighbors</span> <span class="o">&lt;</span><span class="n">integer</span><span class="o">&gt;</span>
+                      <span class="n">Number</span> <span class="n">of</span> <span class="n">nearest</span> <span class="n">images</span> <span class="n">to</span> <span class="n">pre</span><span class="o">-</span><span class="n">match</span> <span class="n">based</span> <span class="n">on</span> <span class="n">GPS</span>
+                      <span class="n">exif</span> <span class="n">data</span><span class="o">.</span> <span class="n">Set</span> <span class="n">to</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">skip</span> <span class="n">pre</span><span class="o">-</span><span class="n">matching</span><span class="o">.</span> <span class="n">Neighbors</span>
+                      <span class="n">works</span> <span class="n">together</span> <span class="k">with</span> <span class="n">Distance</span> <span class="n">parameter</span><span class="p">,</span> <span class="nb">set</span> <span class="n">both</span> <span class="n">to</span> <span class="mi">0</span>
+                      <span class="n">to</span> <span class="ow">not</span> <span class="n">use</span> <span class="n">pre</span><span class="o">-</span><span class="n">matching</span><span class="o">.</span> <span class="n">OpenSFM</span> <span class="n">uses</span> <span class="n">both</span> <span class="n">parameters</span>
+                      <span class="n">at</span> <span class="n">the</span> <span class="n">same</span> <span class="n">time</span><span class="p">,</span> <span class="n">Bundler</span> <span class="n">uses</span> <span class="n">only</span> <span class="n">one</span> <span class="n">which</span> <span class="n">has</span>
+                      <span class="n">value</span><span class="p">,</span> <span class="n">prefering</span> <span class="n">the</span> <span class="n">Neighbors</span> <span class="n">parameter</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span> <span class="mi">8</span>
+<span class="o">--</span><span class="n">matcher</span><span class="o">-</span><span class="n">distance</span> <span class="o">&lt;</span><span class="n">integer</span><span class="o">&gt;</span>
+                      <span class="n">Distance</span> <span class="n">threshold</span> <span class="ow">in</span> <span class="n">meters</span> <span class="n">to</span> <span class="n">find</span> <span class="n">pre</span><span class="o">-</span><span class="n">matching</span>
+                      <span class="n">images</span> <span class="n">based</span> <span class="n">on</span> <span class="n">GPS</span> <span class="n">exif</span> <span class="n">data</span><span class="o">.</span> <span class="n">Set</span> <span class="n">both</span> <span class="n">matcher</span><span class="o">-</span>
+                      <span class="n">neighbors</span> <span class="ow">and</span> <span class="n">this</span> <span class="n">to</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">skip</span> <span class="n">pre</span><span class="o">-</span><span class="n">matching</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span>
+                      <span class="mi">0</span>
+<span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">fixed</span><span class="o">-</span><span class="n">camera</span><span class="o">-</span><span class="n">params</span>
+                      <span class="n">Turn</span> <span class="n">off</span> <span class="n">camera</span> <span class="n">parameter</span> <span class="n">optimization</span> <span class="n">during</span> <span class="n">bundler</span>
+<span class="o">--</span><span class="nb">max</span><span class="o">-</span><span class="n">concurrency</span> <span class="o">&lt;</span><span class="n">positive</span> <span class="n">integer</span><span class="o">&gt;</span>
+                      <span class="n">The</span> <span class="n">maximum</span> <span class="n">number</span> <span class="n">of</span> <span class="n">processes</span> <span class="n">to</span> <span class="n">use</span> <span class="ow">in</span> <span class="n">various</span>
+                      <span class="n">processes</span><span class="o">.</span> <span class="n">Peak</span> <span class="n">memory</span> <span class="n">requirement</span> <span class="ow">is</span> <span class="o">~</span><span class="mi">1</span><span class="n">GB</span> <span class="n">per</span> <span class="n">thread</span>
+                      <span class="ow">and</span> <span class="mi">2</span> <span class="n">megapixel</span> <span class="n">image</span> <span class="n">resolution</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span> <span class="mi">4</span>
+<span class="o">--</span><span class="n">depthmap</span><span class="o">-</span><span class="n">resolution</span> <span class="o">&lt;</span><span class="n">positive</span> <span class="nb">float</span><span class="o">&gt;</span>
+                      <span class="n">Controls</span> <span class="n">the</span> <span class="n">density</span> <span class="n">of</span> <span class="n">the</span> <span class="n">point</span> <span class="n">cloud</span> <span class="n">by</span> <span class="n">setting</span> <span class="n">the</span>
+                      <span class="n">resolution</span> <span class="n">of</span> <span class="n">the</span> <span class="n">depthmap</span> <span class="n">images</span><span class="o">.</span> <span class="n">Higher</span> <span class="n">values</span> <span class="n">take</span>
+                      <span class="n">longer</span> <span class="n">to</span> <span class="n">compute</span> <span class="n">but</span> <span class="n">produce</span> <span class="n">denser</span> <span class="n">point</span> <span class="n">clouds</span><span class="o">.</span>
+                      <span class="n">Default</span><span class="p">:</span> <span class="mi">640</span>
+<span class="o">--</span><span class="n">opensfm</span><span class="o">-</span><span class="n">depthmap</span><span class="o">-</span><span class="nb">min</span><span class="o">-</span><span class="n">consistent</span><span class="o">-</span><span class="n">views</span> <span class="o">&lt;</span><span class="n">integer</span><span class="p">:</span> <span class="mi">2</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">9</span><span class="o">&gt;</span>
+                      <span class="n">Minimum</span> <span class="n">number</span> <span class="n">of</span> <span class="n">views</span> <span class="n">that</span> <span class="n">should</span> <span class="n">reconstruct</span> <span class="n">a</span>
+                      <span class="n">point</span> <span class="k">for</span> <span class="n">it</span> <span class="n">to</span> <span class="n">be</span> <span class="n">valid</span><span class="o">.</span> <span class="n">Use</span> <span class="n">lower</span> <span class="n">values</span> <span class="k">if</span> <span class="n">your</span>
+                      <span class="n">images</span> <span class="n">have</span> <span class="n">less</span> <span class="n">overlap</span><span class="o">.</span> <span class="n">Lower</span> <span class="n">values</span> <span class="n">result</span> <span class="ow">in</span>
+                      <span class="n">denser</span> <span class="n">point</span> <span class="n">clouds</span> <span class="n">but</span> <span class="k">with</span> <span class="n">more</span> <span class="n">noise</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span> <span class="mi">3</span>
+<span class="o">--</span><span class="n">opensfm</span><span class="o">-</span><span class="n">depthmap</span><span class="o">-</span><span class="n">method</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span>
+                      <span class="n">Raw</span> <span class="n">depthmap</span> <span class="n">computation</span> <span class="n">algorithm</span><span class="o">.</span> <span class="n">PATCH_MATCH</span> <span class="ow">and</span>
+                      <span class="n">PATCH_MATCH_SAMPLE</span> <span class="n">are</span> <span class="n">faster</span><span class="p">,</span> <span class="n">but</span> <span class="n">might</span> <span class="n">miss</span> <span class="n">some</span>
+                      <span class="n">valid</span> <span class="n">points</span><span class="o">.</span> <span class="n">BRUTE_FORCE</span> <span class="n">takes</span> <span class="n">longer</span> <span class="n">but</span> <span class="n">produces</span>
+                      <span class="n">denser</span> <span class="n">reconstructions</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span> <span class="n">PATCH_MATCH</span>
+<span class="o">--</span><span class="n">opensfm</span><span class="o">-</span><span class="n">depthmap</span><span class="o">-</span><span class="nb">min</span><span class="o">-</span><span class="n">patch</span><span class="o">-</span><span class="n">sd</span> <span class="o">&lt;</span><span class="n">positive</span> <span class="nb">float</span><span class="o">&gt;</span>
+                      <span class="n">When</span> <span class="n">using</span> <span class="n">PATCH_MATCH</span> <span class="ow">or</span> <span class="n">PATCH_MATCH_SAMPLE</span><span class="p">,</span> <span class="n">controls</span>
+                      <span class="n">the</span> <span class="n">standard</span> <span class="n">deviation</span> <span class="n">threshold</span> <span class="n">to</span> <span class="n">include</span> <span class="n">patches</span><span class="o">.</span>
+                      <span class="n">Patches</span> <span class="k">with</span> <span class="n">lower</span> <span class="n">standard</span> <span class="n">deviation</span> <span class="n">are</span> <span class="n">ignored</span><span class="o">.</span>
+                      <span class="n">Default</span><span class="p">:</span> <span class="mi">1</span>
+<span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">hybrid</span><span class="o">-</span><span class="n">bundle</span><span class="o">-</span><span class="n">adjustment</span>
+                      <span class="n">Run</span> <span class="n">local</span> <span class="n">bundle</span> <span class="n">adjustment</span> <span class="k">for</span> <span class="n">every</span> <span class="n">image</span> <span class="n">added</span> <span class="n">to</span>
+                      <span class="n">the</span> <span class="n">reconstruction</span> <span class="ow">and</span> <span class="n">a</span> <span class="k">global</span> <span class="n">adjustment</span> <span class="n">every</span> <span class="mi">100</span>
+                      <span class="n">images</span><span class="o">.</span> <span class="n">Speeds</span> <span class="n">up</span> <span class="n">reconstruction</span> <span class="k">for</span> <span class="n">very</span> <span class="n">large</span>
+                      <span class="n">datasets</span><span class="o">.</span>
+<span class="o">--</span><span class="n">mve</span><span class="o">-</span><span class="n">confidence</span> <span class="o">&lt;</span><span class="nb">float</span><span class="p">:</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="o">&gt;</span>
+                      <span class="n">Discard</span> <span class="n">points</span> <span class="n">that</span> <span class="n">have</span> <span class="n">less</span> <span class="n">than</span> <span class="n">a</span> <span class="n">certain</span>
+                      <span class="n">confidence</span> <span class="n">threshold</span><span class="o">.</span> <span class="n">This</span> <span class="n">only</span> <span class="n">affects</span> <span class="n">dense</span>
+                      <span class="n">reconstructions</span> <span class="n">performed</span> <span class="k">with</span> <span class="n">MVE</span><span class="o">.</span> <span class="n">Higher</span> <span class="n">values</span>
+                      <span class="n">discard</span> <span class="n">more</span> <span class="n">points</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span> <span class="mf">0.6</span>
+<span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="mi">3</span><span class="n">dmesh</span>          <span class="n">Use</span> <span class="n">a</span> <span class="n">full</span> <span class="mi">3</span><span class="n">D</span> <span class="n">mesh</span> <span class="n">to</span> <span class="n">compute</span> <span class="n">the</span> <span class="n">orthophoto</span> <span class="n">instead</span>
+                      <span class="n">of</span> <span class="n">a</span> <span class="mf">2.5</span><span class="n">D</span> <span class="n">mesh</span><span class="o">.</span> <span class="n">This</span> <span class="n">option</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">bit</span> <span class="n">faster</span> <span class="ow">and</span>
+                      <span class="n">provides</span> <span class="n">similar</span> <span class="n">results</span> <span class="ow">in</span> <span class="n">planar</span> <span class="n">areas</span><span class="o">.</span>
+<span class="o">--</span><span class="n">skip</span><span class="o">-</span><span class="mi">3</span><span class="n">dmodel</span>        <span class="n">Skip</span> <span class="n">generation</span> <span class="n">of</span> <span class="n">a</span> <span class="n">full</span> <span class="mi">3</span><span class="n">D</span> <span class="n">model</span><span class="o">.</span> <span class="n">This</span> <span class="n">can</span> <span class="n">save</span> <span class="n">time</span>
+                      <span class="k">if</span> <span class="n">you</span> <span class="n">only</span> <span class="n">need</span> <span class="mi">2</span><span class="n">D</span> <span class="n">results</span> <span class="n">such</span> <span class="k">as</span> <span class="n">orthophotos</span> <span class="ow">and</span>
+                      <span class="n">DEMs</span><span class="o">.</span>
+<span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">opensfm</span><span class="o">-</span><span class="n">dense</span>   <span class="n">Use</span> <span class="n">opensfm</span> <span class="n">to</span> <span class="n">compute</span> <span class="n">dense</span> <span class="n">point</span> <span class="n">cloud</span> <span class="n">alternatively</span>
+<span class="o">--</span><span class="n">ignore</span><span class="o">-</span><span class="n">gsd</span>          <span class="n">Ignore</span> <span class="n">Ground</span> <span class="n">Sampling</span> <span class="n">Distance</span> <span class="p">(</span><span class="n">GSD</span><span class="p">)</span><span class="o">.</span> <span class="n">GSD</span> <span class="n">caps</span> <span class="n">the</span>
+                      <span class="n">maximum</span> <span class="n">resolution</span> <span class="n">of</span> <span class="n">image</span> <span class="n">outputs</span> <span class="ow">and</span> <span class="n">resizes</span> <span class="n">images</span>
+                      <span class="n">when</span> <span class="n">necessary</span><span class="p">,</span> <span class="n">resulting</span> <span class="ow">in</span> <span class="n">faster</span> <span class="n">processing</span> <span class="ow">and</span>
+                      <span class="n">lower</span> <span class="n">memory</span> <span class="n">usage</span><span class="o">.</span> <span class="n">Since</span> <span class="n">GSD</span> <span class="ow">is</span> <span class="n">an</span> <span class="n">estimate</span><span class="p">,</span>
+                      <span class="n">sometimes</span> <span class="n">ignoring</span> <span class="n">it</span> <span class="n">can</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">slightly</span> <span class="n">better</span>
+                      <span class="n">image</span> <span class="n">output</span> <span class="n">quality</span><span class="o">.</span>
+<span class="o">--</span><span class="n">mesh</span><span class="o">-</span><span class="n">size</span> <span class="o">&lt;</span><span class="n">positive</span> <span class="n">integer</span><span class="o">&gt;</span>
+                      <span class="n">The</span> <span class="n">maximum</span> <span class="n">vertex</span> <span class="n">count</span> <span class="n">of</span> <span class="n">the</span> <span class="n">output</span> <span class="n">mesh</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span>
+                      <span class="mi">100000</span>
+<span class="o">--</span><span class="n">mesh</span><span class="o">-</span><span class="n">octree</span><span class="o">-</span><span class="n">depth</span> <span class="o">&lt;</span><span class="n">positive</span> <span class="n">integer</span><span class="o">&gt;</span>
+                      <span class="n">Oct</span><span class="o">-</span><span class="n">tree</span> <span class="n">depth</span> <span class="n">used</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">mesh</span> <span class="n">reconstruction</span><span class="p">,</span>
+                      <span class="n">increase</span> <span class="n">to</span> <span class="n">get</span> <span class="n">more</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">recommended</span> <span class="n">values</span> <span class="n">are</span>
+                      <span class="mi">8</span><span class="o">-</span><span class="mf">12.</span> <span class="n">Default</span><span class="p">:</span> <span class="mi">9</span>
+<span class="o">--</span><span class="n">mesh</span><span class="o">-</span><span class="n">samples</span> <span class="o">&lt;</span><span class="nb">float</span> <span class="o">&gt;=</span> <span class="mf">1.0</span><span class="o">&gt;</span>
+                      <span class="n">Number</span> <span class="n">of</span> <span class="n">points</span> <span class="n">per</span> <span class="n">octree</span> <span class="n">node</span><span class="p">,</span> <span class="n">recommended</span> <span class="ow">and</span>
+                      <span class="n">default</span> <span class="n">value</span><span class="p">:</span> <span class="mf">1.0</span>
+<span class="o">--</span><span class="n">mesh</span><span class="o">-</span><span class="n">point</span><span class="o">-</span><span class="n">weight</span> <span class="o">&lt;</span><span class="n">positive</span> <span class="nb">float</span><span class="o">&gt;</span>
+                      <span class="n">This</span> <span class="n">floating</span> <span class="n">point</span> <span class="n">value</span> <span class="n">specifies</span> <span class="n">the</span> <span class="n">importance</span>
+                      <span class="n">that</span> <span class="n">interpolation</span> <span class="n">of</span> <span class="n">the</span> <span class="n">point</span> <span class="n">samples</span> <span class="ow">is</span> <span class="n">given</span> <span class="ow">in</span>
+                      <span class="n">the</span> <span class="n">formulation</span> <span class="n">of</span> <span class="n">the</span> <span class="n">screened</span> <span class="n">Poisson</span> <span class="n">equation</span><span class="o">.</span> <span class="n">The</span>
+                      <span class="n">results</span> <span class="n">of</span> <span class="n">the</span> <span class="n">original</span> <span class="p">(</span><span class="n">unscreened</span><span class="p">)</span> <span class="n">Poisson</span>
+                      <span class="n">Reconstruction</span> <span class="n">can</span> <span class="n">be</span> <span class="n">obtained</span> <span class="n">by</span> <span class="n">setting</span> <span class="n">this</span> <span class="n">value</span>
+                      <span class="n">to</span> <span class="mf">0.</span><span class="n">Default</span><span class="o">=</span> <span class="mi">4</span>
+<span class="o">--</span><span class="n">fast</span><span class="o">-</span><span class="n">orthophoto</span>     <span class="n">Skips</span> <span class="n">dense</span> <span class="n">reconstruction</span> <span class="ow">and</span> <span class="mi">3</span><span class="n">D</span> <span class="n">model</span> <span class="n">generation</span><span class="o">.</span> <span class="n">It</span>
+                      <span class="n">generates</span> <span class="n">an</span> <span class="n">orthophoto</span> <span class="n">directly</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">sparse</span>
+                      <span class="n">reconstruction</span><span class="o">.</span> <span class="n">If</span> <span class="n">you</span> <span class="n">just</span> <span class="n">need</span> <span class="n">an</span> <span class="n">orthophoto</span> <span class="ow">and</span> <span class="n">do</span>
+                      <span class="ow">not</span> <span class="n">need</span> <span class="n">a</span> <span class="n">full</span> <span class="mi">3</span><span class="n">D</span> <span class="n">model</span><span class="p">,</span> <span class="n">turn</span> <span class="n">on</span> <span class="n">this</span> <span class="n">option</span><span class="o">.</span>
+                      <span class="n">Experimental</span><span class="o">.</span>
+<span class="o">--</span><span class="n">crop</span> <span class="o">&lt;</span><span class="n">positive</span> <span class="nb">float</span><span class="o">&gt;</span>
+                      <span class="n">Automatically</span> <span class="n">crop</span> <span class="n">image</span> <span class="n">outputs</span> <span class="n">by</span> <span class="n">creating</span> <span class="n">a</span> <span class="n">smooth</span>
+                      <span class="n">buffer</span> <span class="n">around</span> <span class="n">the</span> <span class="n">dataset</span> <span class="n">boundaries</span><span class="p">,</span> <span class="n">shrinked</span> <span class="n">by</span> <span class="n">N</span>
+                      <span class="n">meters</span><span class="o">.</span> <span class="n">Use</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">disable</span> <span class="n">cropping</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span> <span class="mi">3</span>
+<span class="o">--</span><span class="n">pc</span><span class="o">-</span><span class="n">classify</span>         <span class="n">Classify</span> <span class="n">the</span> <span class="n">point</span> <span class="n">cloud</span> <span class="n">outputs</span> <span class="n">using</span> <span class="n">a</span> <span class="n">Simple</span>
+                      <span class="n">Morphological</span> <span class="n">Filter</span><span class="o">.</span> <span class="n">You</span> <span class="n">can</span> <span class="n">control</span> <span class="n">the</span> <span class="n">behavior</span> <span class="n">of</span>
+                      <span class="n">this</span> <span class="n">option</span> <span class="n">by</span> <span class="n">tweaking</span> <span class="n">the</span> <span class="o">--</span><span class="n">dem</span><span class="o">-*</span> <span class="n">parameters</span><span class="o">.</span>
+                      <span class="n">Default</span><span class="p">:</span> <span class="kc">False</span>
+<span class="o">--</span><span class="n">pc</span><span class="o">-</span><span class="n">csv</span>              <span class="n">Export</span> <span class="n">the</span> <span class="n">georeferenced</span> <span class="n">point</span> <span class="n">cloud</span> <span class="ow">in</span> <span class="n">CSV</span> <span class="nb">format</span><span class="o">.</span>
+                      <span class="n">Default</span><span class="p">:</span> <span class="kc">False</span>
+<span class="o">--</span><span class="n">pc</span><span class="o">-</span><span class="n">las</span>              <span class="n">Export</span> <span class="n">the</span> <span class="n">georeferenced</span> <span class="n">point</span> <span class="n">cloud</span> <span class="ow">in</span> <span class="n">LAS</span> <span class="nb">format</span><span class="o">.</span>
+                      <span class="n">Default</span><span class="p">:</span> <span class="kc">False</span>
+<span class="o">--</span><span class="n">pc</span><span class="o">-</span><span class="nb">filter</span> <span class="o">&lt;</span><span class="n">positive</span> <span class="nb">float</span><span class="o">&gt;</span>
+                      <span class="n">Filters</span> <span class="n">the</span> <span class="n">point</span> <span class="n">cloud</span> <span class="n">by</span> <span class="n">removing</span> <span class="n">points</span> <span class="n">that</span>
+                      <span class="n">deviate</span> <span class="n">more</span> <span class="n">than</span> <span class="n">N</span> <span class="n">standard</span> <span class="n">deviations</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">local</span>
+                      <span class="n">mean</span><span class="o">.</span> <span class="n">Set</span> <span class="n">to</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">disable</span> <span class="n">filtering</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span> <span class="mf">2.5</span>
+<span class="o">--</span><span class="n">smrf</span><span class="o">-</span><span class="n">scalar</span> <span class="o">&lt;</span><span class="n">positive</span> <span class="nb">float</span><span class="o">&gt;</span>
+                      <span class="n">Simple</span> <span class="n">Morphological</span> <span class="n">Filter</span> <span class="n">elevation</span> <span class="n">scalar</span>
+                      <span class="n">parameter</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span> <span class="mf">1.25</span>
+<span class="o">--</span><span class="n">smrf</span><span class="o">-</span><span class="n">slope</span> <span class="o">&lt;</span><span class="n">positive</span> <span class="nb">float</span><span class="o">&gt;</span>
+                      <span class="n">Simple</span> <span class="n">Morphological</span> <span class="n">Filter</span> <span class="n">slope</span> <span class="n">parameter</span> <span class="p">(</span><span class="n">rise</span> <span class="n">over</span>
+                      <span class="n">run</span><span class="p">)</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span> <span class="mf">0.15</span>
+<span class="o">--</span><span class="n">smrf</span><span class="o">-</span><span class="n">threshold</span> <span class="o">&lt;</span><span class="n">positive</span> <span class="nb">float</span><span class="o">&gt;</span>
+                      <span class="n">Simple</span> <span class="n">Morphological</span> <span class="n">Filter</span> <span class="n">elevation</span> <span class="n">threshold</span>
+                      <span class="n">parameter</span> <span class="p">(</span><span class="n">meters</span><span class="p">)</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span> <span class="mf">0.5</span>
+<span class="o">--</span><span class="n">smrf</span><span class="o">-</span><span class="n">window</span> <span class="o">&lt;</span><span class="n">positive</span> <span class="nb">float</span><span class="o">&gt;</span>
+                      <span class="n">Simple</span> <span class="n">Morphological</span> <span class="n">Filter</span> <span class="n">window</span> <span class="n">radius</span> <span class="n">parameter</span>
+                      <span class="p">(</span><span class="n">meters</span><span class="p">)</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span> <span class="mf">18.0</span>
+<span class="o">--</span><span class="n">texturing</span><span class="o">-</span><span class="n">data</span><span class="o">-</span><span class="n">term</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span>
+                      <span class="n">Data</span> <span class="n">term</span><span class="p">:</span> <span class="p">[</span><span class="n">area</span><span class="p">,</span> <span class="n">gmi</span><span class="p">]</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span> <span class="n">gmi</span>
+<span class="o">--</span><span class="n">texturing</span><span class="o">-</span><span class="n">nadir</span><span class="o">-</span><span class="n">weight</span> <span class="o">&lt;</span><span class="n">integer</span><span class="p">:</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">32</span><span class="o">&gt;</span>
+                      <span class="n">Affects</span> <span class="n">orthophotos</span> <span class="n">only</span><span class="o">.</span> <span class="n">Higher</span> <span class="n">values</span> <span class="n">result</span> <span class="ow">in</span>
+                      <span class="n">sharper</span> <span class="n">corners</span><span class="p">,</span> <span class="n">but</span> <span class="n">can</span> <span class="n">affect</span> <span class="n">color</span> <span class="n">distribution</span> <span class="ow">and</span>
+                      <span class="n">blurriness</span><span class="o">.</span> <span class="n">Use</span> <span class="n">lower</span> <span class="n">values</span> <span class="k">for</span> <span class="n">planar</span> <span class="n">areas</span> <span class="ow">and</span>
+                      <span class="n">higher</span> <span class="n">values</span> <span class="k">for</span> <span class="n">urban</span> <span class="n">areas</span><span class="o">.</span> <span class="n">The</span> <span class="n">default</span> <span class="n">value</span> <span class="n">works</span>
+                      <span class="n">well</span> <span class="k">for</span> <span class="n">most</span> <span class="n">scenarios</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span> <span class="mi">16</span>
+<span class="o">--</span><span class="n">texturing</span><span class="o">-</span><span class="n">outlier</span><span class="o">-</span><span class="n">removal</span><span class="o">-</span><span class="nb">type</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span>
+                      <span class="n">Type</span> <span class="n">of</span> <span class="n">photometric</span> <span class="n">outlier</span> <span class="n">removal</span> <span class="n">method</span><span class="p">:</span> <span class="p">[</span><span class="n">none</span><span class="p">,</span>
+                      <span class="n">gauss_damping</span><span class="p">,</span> <span class="n">gauss_clamping</span><span class="p">]</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span>
+                      <span class="n">gauss_clamping</span>
+<span class="o">--</span><span class="n">texturing</span><span class="o">-</span><span class="n">skip</span><span class="o">-</span><span class="n">visibility</span><span class="o">-</span><span class="n">test</span>
+                      <span class="n">Skip</span> <span class="n">geometric</span> <span class="n">visibility</span> <span class="n">test</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span> <span class="kc">False</span>
+<span class="o">--</span><span class="n">texturing</span><span class="o">-</span><span class="n">skip</span><span class="o">-</span><span class="k">global</span><span class="o">-</span><span class="n">seam</span><span class="o">-</span><span class="n">leveling</span>
+                      <span class="n">Skip</span> <span class="k">global</span> <span class="n">seam</span> <span class="n">leveling</span><span class="o">.</span> <span class="n">Useful</span> <span class="k">for</span> <span class="n">IR</span> <span class="n">data</span><span class="o">.</span><span class="n">Default</span><span class="p">:</span>
+                      <span class="kc">False</span>
+<span class="o">--</span><span class="n">texturing</span><span class="o">-</span><span class="n">skip</span><span class="o">-</span><span class="n">local</span><span class="o">-</span><span class="n">seam</span><span class="o">-</span><span class="n">leveling</span>
+                      <span class="n">Skip</span> <span class="n">local</span> <span class="n">seam</span> <span class="n">blending</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span> <span class="kc">False</span>
+<span class="o">--</span><span class="n">texturing</span><span class="o">-</span><span class="n">skip</span><span class="o">-</span><span class="n">hole</span><span class="o">-</span><span class="n">filling</span>
+                      <span class="n">Skip</span> <span class="n">filling</span> <span class="n">of</span> <span class="n">holes</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">mesh</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span> <span class="kc">False</span>
+<span class="o">--</span><span class="n">texturing</span><span class="o">-</span><span class="n">keep</span><span class="o">-</span><span class="n">unseen</span><span class="o">-</span><span class="n">faces</span>
+                      <span class="n">Keep</span> <span class="n">faces</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">mesh</span> <span class="n">that</span> <span class="n">are</span> <span class="ow">not</span> <span class="n">seen</span> <span class="ow">in</span> <span class="nb">any</span>
+                      <span class="n">camera</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span> <span class="kc">False</span>
+<span class="o">--</span><span class="n">texturing</span><span class="o">-</span><span class="n">tone</span><span class="o">-</span><span class="n">mapping</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span>
+                      <span class="n">Turn</span> <span class="n">on</span> <span class="n">gamma</span> <span class="n">tone</span> <span class="n">mapping</span> <span class="ow">or</span> <span class="n">none</span> <span class="k">for</span> <span class="n">no</span> <span class="n">tone</span>
+                      <span class="n">mapping</span><span class="o">.</span> <span class="n">Choices</span> <span class="n">are</span> <span class="s1">&#39;gamma&#39;</span> <span class="ow">or</span> <span class="s1">&#39;none&#39;</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span> <span class="n">none</span>
+<span class="o">--</span><span class="n">gcp</span> <span class="o">&lt;</span><span class="n">path</span> <span class="n">string</span><span class="o">&gt;</span>   <span class="n">path</span> <span class="n">to</span> <span class="n">the</span> <span class="n">file</span> <span class="n">containing</span> <span class="n">the</span> <span class="n">ground</span> <span class="n">control</span> <span class="n">points</span>
+                      <span class="n">used</span> <span class="k">for</span> <span class="n">georeferencing</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span> <span class="kc">None</span><span class="o">.</span> <span class="n">The</span> <span class="n">file</span> <span class="n">needs</span>
+                      <span class="n">to</span> <span class="n">be</span> <span class="n">on</span> <span class="n">the</span> <span class="n">following</span> <span class="n">line</span> <span class="nb">format</span><span class="p">:</span> <span class="n">easting</span> <span class="n">northing</span>
+                      <span class="n">height</span> <span class="n">pixelrow</span> <span class="n">pixelcol</span> <span class="n">imagename</span>
+<span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">exif</span>            <span class="n">Use</span> <span class="n">this</span> <span class="n">tag</span> <span class="k">if</span> <span class="n">you</span> <span class="n">have</span> <span class="n">a</span> <span class="n">gcp_list</span><span class="o">.</span><span class="n">txt</span> <span class="n">but</span> <span class="n">want</span> <span class="n">to</span>
+                      <span class="n">use</span> <span class="n">the</span> <span class="n">exif</span> <span class="n">geotags</span> <span class="n">instead</span>
+<span class="o">--</span><span class="n">dtm</span>                 <span class="n">Use</span> <span class="n">this</span> <span class="n">tag</span> <span class="n">to</span> <span class="n">build</span> <span class="n">a</span> <span class="n">DTM</span> <span class="p">(</span><span class="n">Digital</span> <span class="n">Terrain</span> <span class="n">Model</span><span class="p">,</span>
+                      <span class="n">ground</span> <span class="n">only</span><span class="p">)</span> <span class="n">using</span> <span class="n">a</span> <span class="n">simple</span> <span class="n">morphological</span> <span class="nb">filter</span><span class="o">.</span>
+                      <span class="n">Check</span> <span class="n">the</span> <span class="o">--</span><span class="n">dem</span><span class="o">*</span> <span class="ow">and</span> <span class="o">--</span><span class="n">smrf</span><span class="o">*</span> <span class="n">parameters</span> <span class="k">for</span> <span class="n">finer</span>
+                      <span class="n">tuning</span><span class="o">.</span>
+<span class="o">--</span><span class="n">dsm</span>                 <span class="n">Use</span> <span class="n">this</span> <span class="n">tag</span> <span class="n">to</span> <span class="n">build</span> <span class="n">a</span> <span class="n">DSM</span> <span class="p">(</span><span class="n">Digital</span> <span class="n">Surface</span> <span class="n">Model</span><span class="p">,</span>
+                      <span class="n">ground</span> <span class="o">+</span> <span class="n">objects</span><span class="p">)</span> <span class="n">using</span> <span class="n">a</span> <span class="n">progressive</span> <span class="n">morphological</span>
+                      <span class="nb">filter</span><span class="o">.</span> <span class="n">Check</span> <span class="n">the</span> <span class="o">--</span><span class="n">dem</span><span class="o">*</span> <span class="n">parameters</span> <span class="k">for</span> <span class="n">finer</span> <span class="n">tuning</span><span class="o">.</span>
+<span class="o">--</span><span class="n">dem</span><span class="o">-</span><span class="n">gapfill</span><span class="o">-</span><span class="n">steps</span> <span class="o">&lt;</span><span class="n">positive</span> <span class="n">integer</span><span class="o">&gt;</span>
+                      <span class="n">Number</span> <span class="n">of</span> <span class="n">steps</span> <span class="n">used</span> <span class="n">to</span> <span class="n">fill</span> <span class="n">areas</span> <span class="k">with</span> <span class="n">gaps</span><span class="o">.</span> <span class="n">Set</span> <span class="n">to</span> <span class="mi">0</span>
+                      <span class="n">to</span> <span class="n">disable</span> <span class="n">gap</span> <span class="n">filling</span><span class="o">.</span> <span class="n">Starting</span> <span class="k">with</span> <span class="n">a</span> <span class="n">radius</span> <span class="n">equal</span>
+                      <span class="n">to</span> <span class="n">the</span> <span class="n">output</span> <span class="n">resolution</span><span class="p">,</span> <span class="n">N</span> <span class="n">different</span> <span class="n">DEMs</span> <span class="n">are</span>
+                      <span class="n">generated</span> <span class="k">with</span> <span class="n">progressively</span> <span class="n">bigger</span> <span class="n">radius</span> <span class="n">using</span> <span class="n">the</span>
+                      <span class="n">inverse</span> <span class="n">distance</span> <span class="n">weighted</span> <span class="p">(</span><span class="n">IDW</span><span class="p">)</span> <span class="n">algorithm</span> <span class="ow">and</span> <span class="n">merged</span>
+                      <span class="n">together</span><span class="o">.</span> <span class="n">Remaining</span> <span class="n">gaps</span> <span class="n">are</span> <span class="n">then</span> <span class="n">merged</span> <span class="n">using</span> <span class="n">nearest</span>
+                      <span class="n">neighbor</span> <span class="n">interpolation</span><span class="o">.</span> <span class="n">Default</span><span class="o">=</span><span class="mi">3</span>
+<span class="o">--</span><span class="n">dem</span><span class="o">-</span><span class="n">resolution</span> <span class="o">&lt;</span><span class="nb">float</span><span class="o">&gt;</span>
+                      <span class="n">DSM</span><span class="o">/</span><span class="n">DTM</span> <span class="n">resolution</span> <span class="ow">in</span> <span class="n">cm</span> <span class="o">/</span> <span class="n">pixel</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span> <span class="mi">5</span>
+<span class="o">--</span><span class="n">dem</span><span class="o">-</span><span class="n">decimation</span> <span class="o">&lt;</span><span class="n">positive</span> <span class="n">integer</span><span class="o">&gt;</span>
+                      <span class="n">Decimate</span> <span class="n">the</span> <span class="n">points</span> <span class="n">before</span> <span class="n">generating</span> <span class="n">the</span> <span class="n">DEM</span><span class="o">.</span> <span class="mi">1</span> <span class="ow">is</span> <span class="n">no</span>
+                      <span class="n">decimation</span> <span class="p">(</span><span class="n">full</span> <span class="n">quality</span><span class="p">)</span><span class="o">.</span> <span class="mi">100</span> <span class="n">decimates</span> <span class="o">~</span><span class="mi">99</span><span class="o">%</span> <span class="n">of</span> <span class="n">the</span>
+                      <span class="n">points</span><span class="o">.</span> <span class="n">Useful</span> <span class="k">for</span> <span class="n">speeding</span> <span class="n">up</span> <span class="n">generation</span><span class="o">.</span> <span class="n">Default</span><span class="o">=</span><span class="mi">1</span>
+<span class="o">--</span><span class="n">dem</span><span class="o">-</span><span class="n">euclidean</span><span class="o">-</span><span class="nb">map</span>   <span class="n">Computes</span> <span class="n">an</span> <span class="n">euclidean</span> <span class="n">raster</span> <span class="nb">map</span> <span class="k">for</span> <span class="n">each</span> <span class="n">DEM</span><span class="o">.</span> <span class="n">The</span> <span class="nb">map</span>
+                      <span class="n">reports</span> <span class="n">the</span> <span class="n">distance</span> <span class="kn">from</span> <span class="nn">each</span> <span class="n">cell</span> <span class="n">to</span> <span class="n">the</span> <span class="n">nearest</span>
+                      <span class="n">NODATA</span> <span class="n">value</span> <span class="p">(</span><span class="n">before</span> <span class="nb">any</span> <span class="n">hole</span> <span class="n">filling</span> <span class="n">takes</span> <span class="n">place</span><span class="p">)</span><span class="o">.</span>
+                      <span class="n">This</span> <span class="n">can</span> <span class="n">be</span> <span class="n">useful</span> <span class="n">to</span> <span class="n">isolate</span> <span class="n">the</span> <span class="n">areas</span> <span class="n">that</span> <span class="n">have</span> <span class="n">been</span>
+                      <span class="n">filled</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span> <span class="kc">False</span>
+<span class="o">--</span><span class="n">orthophoto</span><span class="o">-</span><span class="n">resolution</span> <span class="o">&lt;</span><span class="nb">float</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="o">&gt;</span>
+                      <span class="n">Orthophoto</span> <span class="n">resolution</span> <span class="ow">in</span> <span class="n">cm</span> <span class="o">/</span> <span class="n">pixel</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span> <span class="mi">5</span>
+<span class="o">--</span><span class="n">orthophoto</span><span class="o">-</span><span class="n">no</span><span class="o">-</span><span class="n">tiled</span>
+                      <span class="n">Set</span> <span class="n">this</span> <span class="n">parameter</span> <span class="k">if</span> <span class="n">you</span> <span class="n">want</span> <span class="n">a</span> <span class="n">stripped</span> <span class="n">geoTIFF</span><span class="o">.</span>
+                      <span class="n">Default</span><span class="p">:</span> <span class="kc">False</span>
+<span class="o">--</span><span class="n">orthophoto</span><span class="o">-</span><span class="n">compression</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span>
+                      <span class="n">Set</span> <span class="n">the</span> <span class="n">compression</span> <span class="n">to</span> <span class="n">use</span><span class="o">.</span> <span class="n">Note</span> <span class="n">that</span> <span class="n">this</span> <span class="n">could</span> <span class="k">break</span>
+                      <span class="n">gdal_translate</span> <span class="k">if</span> <span class="n">you</span> <span class="n">don</span><span class="s1">&#39;t know what you are doing.</span>
+                      <span class="n">Options</span><span class="p">:</span> <span class="n">JPEG</span><span class="p">,</span> <span class="n">LZW</span><span class="p">,</span> <span class="n">PACKBITS</span><span class="p">,</span> <span class="n">DEFLATE</span><span class="p">,</span> <span class="n">LZMA</span><span class="p">,</span> <span class="n">NONE</span><span class="o">.</span>
+                      <span class="n">Default</span><span class="p">:</span> <span class="n">DEFLATE</span>
+<span class="o">--</span><span class="n">orthophoto</span><span class="o">-</span><span class="n">bigtiff</span> <span class="p">{</span><span class="n">YES</span><span class="p">,</span><span class="n">NO</span><span class="p">,</span><span class="n">IF_NEEDED</span><span class="p">,</span><span class="n">IF_SAFER</span><span class="p">}</span>
+                      <span class="n">Control</span> <span class="n">whether</span> <span class="n">the</span> <span class="n">created</span> <span class="n">orthophoto</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">BigTIFF</span> <span class="ow">or</span>
+                      <span class="n">classic</span> <span class="n">TIFF</span><span class="o">.</span> <span class="n">BigTIFF</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">variant</span> <span class="k">for</span> <span class="n">files</span> <span class="n">larger</span>
+                      <span class="n">than</span> <span class="mi">4</span><span class="n">GiB</span> <span class="n">of</span> <span class="n">data</span><span class="o">.</span> <span class="n">Options</span> <span class="n">are</span> <span class="n">YES</span><span class="p">,</span> <span class="n">NO</span><span class="p">,</span> <span class="n">IF_NEEDED</span><span class="p">,</span>
+                      <span class="n">IF_SAFER</span><span class="o">.</span> <span class="n">See</span> <span class="n">GDAL</span> <span class="n">specs</span><span class="p">:</span>
+                      <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">gdal</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">frmt_gtiff</span><span class="o">.</span><span class="n">html</span> <span class="k">for</span> <span class="n">more</span> <span class="n">info</span><span class="o">.</span>
+                      <span class="n">Default</span><span class="p">:</span> <span class="n">IF_SAFER</span>
+<span class="o">--</span><span class="n">orthophoto</span><span class="o">-</span><span class="n">cutline</span>  <span class="n">Generates</span> <span class="n">a</span> <span class="n">polygon</span> <span class="n">around</span> <span class="n">the</span> <span class="n">cropping</span> <span class="n">area</span> <span class="n">that</span> <span class="n">cuts</span>
+                      <span class="n">the</span> <span class="n">orthophoto</span> <span class="n">around</span> <span class="n">the</span> <span class="n">edges</span> <span class="n">of</span> <span class="n">features</span><span class="o">.</span> <span class="n">This</span>
+                      <span class="n">polygon</span> <span class="n">can</span> <span class="n">be</span> <span class="n">useful</span> <span class="k">for</span> <span class="n">stitching</span> <span class="n">seamless</span> <span class="n">mosaics</span>
+                      <span class="k">with</span> <span class="n">multiple</span> <span class="n">overlapping</span> <span class="n">orthophotos</span><span class="o">.</span> <span class="n">Default</span><span class="p">:</span> <span class="kc">False</span>
+<span class="o">--</span><span class="n">build</span><span class="o">-</span><span class="n">overviews</span>     <span class="n">Build</span> <span class="n">orthophoto</span> <span class="n">overviews</span> <span class="n">using</span> <span class="n">gdaladdo</span><span class="o">.</span>
+<span class="o">--</span><span class="n">verbose</span><span class="p">,</span> <span class="o">-</span><span class="n">v</span>         <span class="n">Print</span> <span class="n">additional</span> <span class="n">messages</span> <span class="n">to</span> <span class="n">the</span> <span class="n">console</span> <span class="n">Default</span><span class="p">:</span>
+                      <span class="kc">False</span>
+<span class="o">--</span><span class="n">time</span>                <span class="n">Generates</span> <span class="n">a</span> <span class="n">benchmark</span> <span class="n">file</span> <span class="k">with</span> <span class="n">runtime</span> <span class="n">info</span> <span class="n">Default</span><span class="p">:</span>
+                      <span class="kc">False</span>
+<span class="o">--</span><span class="n">version</span>             <span class="n">Displays</span> <span class="n">version</span> <span class="n">number</span> <span class="ow">and</span> <span class="n">exits</span><span class="o">.</span>
+<span class="o">--</span><span class="n">split</span> <span class="o">&lt;</span><span class="n">positive</span> <span class="n">integer</span><span class="o">&gt;</span>
+                      <span class="n">Average</span> <span class="n">number</span> <span class="n">of</span> <span class="n">images</span> <span class="n">per</span> <span class="n">submodel</span><span class="o">.</span> <span class="n">When</span> <span class="n">splitting</span>
+                      <span class="n">a</span> <span class="n">large</span> <span class="n">dataset</span> <span class="n">into</span> <span class="n">smaller</span> <span class="n">submodels</span><span class="p">,</span> <span class="n">images</span> <span class="n">are</span>
+                      <span class="n">grouped</span> <span class="n">into</span> <span class="n">clusters</span><span class="o">.</span> <span class="n">This</span> <span class="n">value</span> <span class="n">regulates</span> <span class="n">the</span> <span class="n">number</span>
+                      <span class="n">of</span> <span class="n">images</span> <span class="n">that</span> <span class="n">each</span> <span class="n">cluster</span> <span class="n">should</span> <span class="n">have</span> <span class="n">on</span> <span class="n">average</span><span class="o">.</span>
+<span class="o">--</span><span class="n">split</span><span class="o">-</span><span class="n">overlap</span> <span class="o">&lt;</span><span class="n">positive</span> <span class="n">integer</span><span class="o">&gt;</span>
+                      <span class="n">Radius</span> <span class="n">of</span> <span class="n">the</span> <span class="n">overlap</span> <span class="n">between</span> <span class="n">submodels</span><span class="o">.</span> <span class="n">After</span>
+                      <span class="n">grouping</span> <span class="n">images</span> <span class="n">into</span> <span class="n">clusters</span><span class="p">,</span> <span class="n">images</span> <span class="n">that</span> <span class="n">are</span> <span class="n">closer</span>
+                      <span class="n">than</span> <span class="n">this</span> <span class="n">radius</span> <span class="n">to</span> <span class="n">a</span> <span class="n">cluster</span> <span class="n">are</span> <span class="n">added</span> <span class="n">to</span> <span class="n">the</span>
+                      <span class="n">cluster</span><span class="o">.</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">done</span> <span class="n">to</span> <span class="n">ensure</span> <span class="n">that</span> <span class="n">neighboring</span>
+                      <span class="n">submodels</span> <span class="n">overlap</span><span class="o">.</span>
+<span class="o">--</span><span class="n">sm</span><span class="o">-</span><span class="n">cluster</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span>
+                      <span class="n">URL</span> <span class="n">to</span> <span class="n">a</span> <span class="n">nodeodm</span><span class="o">-</span><span class="n">proxy</span> <span class="n">instance</span> <span class="k">for</span> <span class="n">distributing</span> <span class="n">a</span>
+                      <span class="n">split</span><span class="o">-</span><span class="n">merge</span> <span class="n">workflow</span> <span class="n">on</span> <span class="n">multiple</span> <span class="n">nodes</span> <span class="ow">in</span> <span class="n">parallel</span><span class="o">.</span>
+                      <span class="n">Default</span><span class="p">:</span> <span class="kc">None</span>
+<span class="o">--</span><span class="n">merge</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span>      <span class="n">Choose</span> <span class="n">what</span> <span class="n">to</span> <span class="n">merge</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">merge</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">split</span>
+                      <span class="n">dataset</span><span class="o">.</span> <span class="n">By</span> <span class="n">default</span> <span class="nb">all</span> <span class="n">available</span> <span class="n">outputs</span> <span class="n">are</span> <span class="n">merged</span><span class="o">.</span>
+                      <span class="n">Default</span><span class="p">:</span> <span class="nb">all</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ground-control-points">
+<span id="id1"></span><h2>Ground Control Points<a class="headerlink" href="#ground-control-points" title="Permalink to this headline">¶</a></h2>
+<p>The format of the GCP file is simple.</p>
+<blockquote>
+<div><ul class="simple">
+<li>The header line is a description of a UTM coordinate system, which must be written as a proj4 string. <a class="reference external" href="http://spatialreference.org/">http://spatialreference.org/</a> is a good resource for finding that information. Please note that currently angular coordinates (like lat/lon) DO NOT work.</li>
+<li>Subsequent lines are the X, Y &amp; Z coordinates, your associated pixels and the image filename:</li>
+</ul>
+</div></blockquote>
+<p>GCP file format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">proj4</span> <span class="n">string</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">geo_x</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">geo_y</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">geo_z</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">im_x</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">im_y</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">image_name</span><span class="o">&gt;</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>e.g. for the Langley dataset:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="n">proj</span><span class="o">=</span><span class="n">utm</span> <span class="o">+</span><span class="n">zone</span><span class="o">=</span><span class="mi">10</span> <span class="o">+</span><span class="n">ellps</span><span class="o">=</span><span class="n">WGS84</span> <span class="o">+</span><span class="n">datum</span><span class="o">=</span><span class="n">WGS84</span> <span class="o">+</span><span class="n">units</span><span class="o">=</span><span class="n">m</span> <span class="o">+</span><span class="n">no_defs</span>
+<span class="mf">544256.7</span> <span class="mf">5320919.9</span> <span class="mi">5</span> <span class="mi">3044</span> <span class="mi">2622</span> <span class="n">IMG_0525</span><span class="o">.</span><span class="n">jpg</span>
+<span class="mf">544157.7</span> <span class="mf">5320899.2</span> <span class="mi">5</span> <span class="mi">4193</span> <span class="mi">1552</span> <span class="n">IMG_0585</span><span class="o">.</span><span class="n">jpg</span>
+<span class="mf">544033.4</span> <span class="mf">5320876.0</span> <span class="mi">5</span> <span class="mi">1606</span> <span class="mi">2763</span> <span class="n">IMG_0690</span><span class="o">.</span><span class="n">jpg</span>
+</pre></div>
+</div>
+<p>If you supply a GCP file called gcp_list.txt then ODM will automatically detect it. If it has another name you can specify using <code class="docutils literal notranslate"><span class="pre">--gcp</span> <span class="pre">&lt;path&gt;</span></code>. If you have a gcp file and want to do georeferencing with exif instead, then you can specify <code class="docutils literal notranslate"><span class="pre">--use-exif</span></code>.</p>
+<p><a class="reference external" href="http://diydrones.com/profiles/blogs/ground-control-points-gcps-for-aerial-photography">This post has some information about placing Ground Control Targets before a flight</a>, but if you already have images, you can find your own points in the images post facto. It’s important that you find high-contrast objects that are found in <strong>at least</strong> 3 photos, and that you find a minimum of 5 objects.</p>
+<p>Sharp corners are good picks for GCPs. You should also place/find the GCPs evenly around your survey area.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">gcp_list.txt</span></code> file must be created in the base of your project folder.</p>
+<p>For good results your file should have a minimum of 15 lines after the header (5 points with 3 images to each point).</p>
+</div>
+<div class="section" id="tutorials">
+<h2>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline">¶</a></h2>
+<p>Below you will find step-by-step instructions for some common use cases.</p>
+<div class="section" id="creating-high-quality-orthophotos">
+<h3>Creating High Quality Orthophotos<a class="headerlink" href="#creating-high-quality-orthophotos" title="Permalink to this headline">¶</a></h3>
+<p>Without any parameter tweaks, ODM chooses a good compromise between quality, speed and memory usage. If you want to get higher quality results, you need to tweak some parameters:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">--orthophoto-resolution</span></code> is the resolution of the orthophoto in cm/pixel. Increase this value for a higher resolution result.</li>
+<li><code class="docutils literal notranslate"><span class="pre">--ignore-gsd</span></code> is a flag that instructs ODM to skip certain memory and speed optimizations that directly affect the orthophoto. Using this flag will increase runtime and memory usage, but will produce sharper results.</li>
+<li><code class="docutils literal notranslate"><span class="pre">--texturing-nadir-weight</span></code> should be increased to <code class="docutils literal notranslate"><span class="pre">29-32</span></code> in urban areas to reconstruct better edges of roofs. It should be decreased to <code class="docutils literal notranslate"><span class="pre">0-6</span></code> in grassy / flat areas.</li>
+<li><code class="docutils literal notranslate"><span class="pre">--texturing-data-term</span></code> should be set to <cite>area</cite> in forest areas.</li>
+<li><code class="docutils literal notranslate"><span class="pre">--mesh-size</span></code> should be increased to <cite>300000-600000</cite> and <cite>–mesh-octree-depth`</cite> should be increased to <cite>10-11</cite> in urban areas to recreate better buildings / roofs.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="creating-digital-terrain-models">
+<h3>Creating Digital Terrain Models<a class="headerlink" href="#creating-digital-terrain-models" title="Permalink to this headline">¶</a></h3>
+<p>By default ODM does not create DEMs. To create a digital terrain model, make sure to pass the <code class="docutils literal notranslate"><span class="pre">--dtm</span></code> flag.</p>
+<p>For DTM generation, a Simple Morphological Filter (smrf) is used to classify points in ground vs. non-ground and only the ground points are used. The <code class="docutils literal notranslate"><span class="pre">smrf</span></code> filter can be controlled via several parameters:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">--smrf-scalar</span></code> scaling value. Increase this parameter for terrains with lots of height variation.</li>
+<li><code class="docutils literal notranslate"><span class="pre">--smrf-slope</span></code> slope parameter, which is a measure of “slope tolerance”. Increase this parameter for terrains with lots of height variation. Should be set to something higher than 0.1 and not higher than 1.2.</li>
+<li><code class="docutils literal notranslate"><span class="pre">--smrf-threshold</span></code> elevation threshold. Set this parameter to the minimum height (in meters) that you expect non-ground objects to be.</li>
+<li><code class="docutils literal notranslate"><span class="pre">--smrf-window</span></code> window radius parameter (in meters) that corresponds to the size of the largest feature (building, trees, etc.) to be removed. Should be set to a value higher than 10.</li>
+</ul>
+</div></blockquote>
+<p>Changing these options can affect the result of DTMs significantly. The best source to read to understand how the parameters affect the output is to read the original paper <a class="reference external" href="https://www.researchgate.net/publication/258333806_An_Improved_Simple_Morphological_Filter_for_the_Terrain_Classification_of_Airborne_LIDAR_Data">An improved simple morphological filter for the terrain classification of airborne LIDAR data</a> (PDF freely available).</p>
+<p>Overall the <code class="docutils literal notranslate"><span class="pre">--smrf-threshold</span></code> option has the biggest impact on results.</p>
+<p>SMRF is good at avoiding Type I errors (small number of ground points mistakenly classified as non-ground) but only “acceptable” at avoiding Type II errors (large number non-ground points mistakenly classified as ground). This needs to be taken in consideration when generating DTMs that are meant to be used visually, since objects mistaken for ground look like artifacts in the final DTM.</p>
+<p>Two other important parameters affect DEM generation:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">--dem-resolution</span></code> which sets the output resolution of the DEM raster (cm/pixel)</li>
+<li><code class="docutils literal notranslate"><span class="pre">--dem-gapfill-steps</span></code> which determines the number of progressive DEM layers to use. For urban scenes increasing this value to <cite>4-5</cite> can help produce better interpolation results in the areas that are left empty by the SMRF filter.</li>
+</ul>
+</div></blockquote>
+<p>Example of how to generate a DTM:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">ti</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">project</span><span class="p">:</span><span class="o">/</span><span class="n">datasets</span><span class="o">/</span><span class="n">code</span> <span class="o">&lt;</span><span class="n">my_odm_image</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">project</span><span class="o">-</span><span class="n">path</span> <span class="o">/</span><span class="n">datasets</span> <span class="o">--</span><span class="n">dtm</span> <span class="o">--</span><span class="n">dem</span><span class="o">-</span><span class="n">resolution</span> <span class="mi">2</span> <span class="o">--</span><span class="n">smrf</span><span class="o">-</span><span class="n">threshold</span> <span class="mf">0.4</span> <span class="o">--</span><span class="n">smrf</span><span class="o">-</span><span class="n">window</span> <span class="mi">24</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="video-reconstruction-developers-only">
+<h2>Video Reconstruction (Developers Only)<a class="headerlink" href="#video-reconstruction-developers-only" title="Permalink to this headline">¶</a></h2>
+<p><strong>Note: Video reconstruction currently will not work out of the box! There’s code in the project that should allow a developer to add SLAM functionality to ODM, but this feature has not been touched in a while and is currently broken.</strong></p>
+<p>It is possible to build a reconstruction using a video file instead of still images.  The technique for reconstructing the camera trajectory from a video is called Simultaneous Localization And Mapping (SLAM).  OpenDroneMap uses the opensource <a class="reference external" href="https://github.com/raulmur/ORB_SLAM2">ORB_SLAM2</a> library for this task.</p>
+<p>We will explain here how to use it.  We will need to build the SLAM module, calibrate the camera and finally run the reconstruction from a video.</p>
+<div class="section" id="building-with-slam-support">
+<h3>Building with SLAM support<a class="headerlink" href="#building-with-slam-support" title="Permalink to this headline">¶</a></h3>
+<p>By default, OpenDroneMap does not build the SLAM module.  To build it we need to do the following two steps</p>
+<p><strong>Build SLAM dependencies</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libglew</span><span class="o">-</span><span class="n">dev</span>
+<span class="n">cd</span> <span class="n">SuperBuild</span><span class="o">/</span><span class="n">build</span>
+<span class="n">cmake</span> <span class="o">-</span><span class="n">DODM_BUILD_SLAM</span><span class="o">=</span><span class="n">ON</span> <span class="o">.</span>
+<span class="n">make</span>
+<span class="n">cd</span> <span class="o">../..</span>
+</pre></div>
+</div>
+<p><strong>Build the SLAM module</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">build</span>
+<span class="n">cmake</span> <span class="o">-</span><span class="n">DODM_BULID_SLAM</span><span class="o">=</span><span class="n">ON</span> <span class="o">.</span>
+<span class="n">make</span>
+<span class="n">cd</span> <span class="o">..</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="calibrating-the-camera">
+<span id="calibration"></span><h3>Calibrating the camera<a class="headerlink" href="#calibrating-the-camera" title="Permalink to this headline">¶</a></h3>
+<p>The SLAM algorithm requires the camera to be calibrated.  It is difficult to extract calibration parameters from the video’s metadata as we do when using still images.  Thus, it is required to run a calibration procedure that will compute the calibration from a video of a checkerboard.</p>
+<p>We will start by <strong>recording the calibration video</strong>.  Display this <a class="reference external" href="https://dl.dropboxusercontent.com/u/2801164/odm/chessboard.pdf">chessboard pattern</a> on a large screen, or <a class="reference external" href="http://www.instructables.com/id/How-to-make-a-camera-calibration-pattern/">print it on a large paper and stick it on a flat surface</a>.  Now record a video pointing the camera to the chessboard.</p>
+<p>While recording move the camera to both sides and up and down always maintaining the entire pattern framed.  The goal is to capture the pattern from different points of views.</p>
+<p>Now you can <strong>run the calibration script</strong> as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">modules</span><span class="o">/</span><span class="n">odm_slam</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">calibrate_video</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">visual</span> <span class="n">PATH_TO_CHESSBOARD_VIDEO</span><span class="o">.</span><span class="n">mp4</span>
+</pre></div>
+</div>
+<p>You will see a window displaying the video and the detected corners.  When it finish, it will print the computed calibration parameters. They should look like this (with different values):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Camera calibration and distortion parameters (OpenCV)</span>
+<span class="n">Camera</span><span class="o">.</span><span class="n">fx</span><span class="p">:</span> <span class="mf">1512.91332401</span>
+<span class="n">Camera</span><span class="o">.</span><span class="n">fy</span><span class="p">:</span> <span class="mf">1512.04223185</span>
+<span class="n">Camera</span><span class="o">.</span><span class="n">cx</span><span class="p">:</span> <span class="mf">956.585155225</span>
+<span class="n">Camera</span><span class="o">.</span><span class="n">cy</span><span class="p">:</span> <span class="mf">527.321715394</span>
+
+<span class="n">Camera</span><span class="o">.</span><span class="n">k1</span><span class="p">:</span> <span class="mf">0.140581949184</span>
+<span class="n">Camera</span><span class="o">.</span><span class="n">k2</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.292250537695</span>
+<span class="n">Camera</span><span class="o">.</span><span class="n">p1</span><span class="p">:</span> <span class="mf">0.000188785464717</span>
+<span class="n">Camera</span><span class="o">.</span><span class="n">p2</span><span class="p">:</span> <span class="mf">0.000611510377372</span>
+<span class="n">Camera</span><span class="o">.</span><span class="n">k3</span><span class="p">:</span> <span class="mf">0.181424769625</span>
+</pre></div>
+</div>
+<p>Keep this text.  We will use it on the next section.</p>
+</div>
+<div class="section" id="running-opendronemap-from-a-video">
+<h3>Running OpenDroneMap from a video<a class="headerlink" href="#running-opendronemap-from-a-video" title="Permalink to this headline">¶</a></h3>
+<p>We are now ready to run the OpenDroneMap pipeline from a video.  For this we need the video and a config file for ORB_SLAM2.  Here’s an <a class="reference external" href="https://dl.dropboxusercontent.com/u/2801164/odm/config.yaml">example config.yaml</a>.  Before using it, copy-paste the calibration parameters for your camera that you just computed on the previous section.</p>
+<p>Put the video and the <cite>config.yaml</cite> file on an empty folder.  Then run OpenDroneMap using the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">project</span><span class="o">-</span><span class="n">path</span> <span class="n">PROJECT_PATH</span> <span class="o">--</span><span class="n">video</span> <span class="n">VIDEO</span><span class="o">.</span><span class="n">mp4</span> <span class="o">--</span><span class="n">slam</span><span class="o">-</span><span class="n">config</span> <span class="n">config</span><span class="o">.</span><span class="n">yaml</span> <span class="o">--</span><span class="n">resize</span><span class="o">-</span><span class="n">to</span> <span class="n">VIDEO_WIDTH</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">PROJECT_PATH</span></code> is the path to the folder containing the video and config file, <code class="docutils literal notranslate"><span class="pre">VIDEO.mp4</span></code> is the name of your video, and <code class="docutils literal notranslate"><span class="pre">VIDEO_WIDTH</span></code> is the width of the video (for example, 1920 for an HD video).</p>
+<p>That command will run the pipeline starting with SLAM and continuing with stereo matching and mesh reconstruction and texturing.</p>
+<p>When done, the textured model will be in <code class="docutils literal notranslate"><span class="pre">PROJECT_PATH/odm_texturing/odm_textured_model.obj</span></code>.  The point cloud created by the stereo matching algorithm will be in <code class="docutils literal notranslate"><span class="pre">PROJECT_PATH/pmvs/recon0/models/option-0000.ply</span></code></p>
+</div>
+</div>
+<div class="section" id="camera-calibration">
+<span id="id2"></span><h2>Camera Calibration<a class="headerlink" href="#camera-calibration" title="Permalink to this headline">¶</a></h2>
+<p>It is highly recommended that you calibrate your images to reduce lens distortion. Doing so will increase the likelihood of finding quality matches between photos and reduce processing time. You can do this in Photoshop or <a class="reference external" href="http://www.imagemagick.org/Usage/lens/">ImageMagick</a>. We also have some simple scripts to perform this task: <a class="reference external" href="https://github.com/OpenDroneMap/CameraCalibration">https://github.com/OpenDroneMap/CameraCalibration</a> . This suite of scripts will find camera matrix and distortion parameters with a set of checkerboard images, then use those parameters to remove distortion from photos.</p>
+<div class="section" id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
+<p>You need to install numpy and opencv::</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">numpy</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">opencv</span> <span class="n">exiftool</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="usage-calibrate-chessboard">
+<h3>Usage: Calibrate chessboard<a class="headerlink" href="#usage-calibrate-chessboard" title="Permalink to this headline">¶</a></h3>
+<p>First you will need to take some photos of a black and white chessboard with a white border, <a class="reference external" href="https://raw.githubusercontent.com/LongerVision/OpenCV_Examples/master/markers/pattern_chessboard.png">like this one</a>.</p>
+<p>Then you will run the opencv_calibrate.py script to generate the matrix and distortion files.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">opencv_calibrate</span><span class="o">.</span><span class="n">py</span> <span class="o">./</span><span class="n">sample</span><span class="o">/</span><span class="n">chessboard</span><span class="o">/</span> <span class="mi">10</span> <span class="mi">7</span>
+</pre></div>
+</div>
+<p>The first argument is the path to the chessboard. You will also have to input the chessboard dimensions (the number of squares in x and y) Optional arguments::</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">out</span>           <span class="n">path</span>      <span class="k">if</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">output</span> <span class="n">the</span> <span class="n">parameters</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">image</span> <span class="n">outputs</span> <span class="n">to</span> <span class="n">a</span> <span class="n">specific</span> <span class="n">path</span><span class="o">.</span> <span class="n">otherwise</span> <span class="n">it</span> <span class="n">gets</span> <span class="n">writting</span> <span class="n">to</span> <span class="o">./</span><span class="n">out</span>
+<span class="o">--</span><span class="n">square_size</span>   <span class="nb">float</span>     <span class="k">if</span> <span class="n">your</span> <span class="n">chessboard</span> <span class="n">squares</span> <span class="n">are</span> <span class="ow">not</span> <span class="n">square</span><span class="p">,</span> <span class="n">you</span> <span class="n">can</span> <span class="n">change</span> <span class="n">this</span><span class="o">.</span> <span class="n">default</span> <span class="ow">is</span> <span class="mf">1.0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="usage-undistort-photos">
+<h3>Usage: undistort photos<a class="headerlink" href="#usage-undistort-photos" title="Permalink to this headline">¶</a></h3>
+<p>With the photos and the produced matrix.txt and distortion.txt, run the following::</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">undistort</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">matrix</span> <span class="n">matrix</span><span class="o">.</span><span class="n">txt</span> <span class="o">--</span><span class="n">distortion</span> <span class="n">distortion</span><span class="o">.</span><span class="n">txt</span> <span class="s2">&quot;/path/to/images/&quot;</span>
+</pre></div>
+</div>
+<p>Note: Do not forget the quotes in “/path/to/images”</p>
+</div>
+<div class="section" id="docker-usage-for-undistorting-images">
+<h3>Docker Usage for undistorting images<a class="headerlink" href="#docker-usage-for-undistorting-images" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">undistort.py</span></code> script depends on exiftool to copy exif metadata to the new images, so on Windows you may have to use Docker for the undistort step. Put the matrix.txt and distortion.txt in their own directory (eg. sample/config) and do the following::</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">build</span> <span class="o">-</span><span class="n">t</span> <span class="n">cc_undistort</span> <span class="o">.</span>
+<span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">v</span> <span class="o">~/</span><span class="n">CameraCalibration</span><span class="o">/</span><span class="n">sample</span><span class="o">/</span><span class="n">images</span><span class="p">:</span><span class="o">/</span><span class="n">app</span><span class="o">/</span><span class="n">images</span> \
+           <span class="o">-</span><span class="n">v</span> <span class="o">~/</span><span class="n">CameraCalibration</span><span class="o">/</span><span class="n">sample</span><span class="o">/</span><span class="n">config</span><span class="p">:</span><span class="o">/</span><span class="n">app</span><span class="o">/</span><span class="n">config</span> \
+           <span class="n">cc_undistort</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="outputs.html" class="btn btn-neutral float-right" title="Outputs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ODMinstallation.html" class="btn btn-neutral" title="ODM Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, OpenDroneMap.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.6',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

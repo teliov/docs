@@ -1,0 +1,304 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Search &mdash; OpenDroneMap 0.6 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="#"/>
+    <link rel="top" title="OpenDroneMap 0.6 documentation" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> OpenDroneMap
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="#" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ODMinstallation.html">ODM Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ODMinstallation.html#hardware-recommendations">Hardware Recommendations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ODMinstallation.html#docker-installation-cross-platform">Docker Installation (cross-platform)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ODMinstallation.html#install-docker-on-windows">Install Docker on Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ODMinstallation.html#install-docker-on-macos-linux">Install Docker on macOS/Linux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ODMinstallation.html#running-odm-webodm">Running ODM/WebODM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ODMinstallation.html#build-your-docker-image">Build your docker image</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ODMinstallation.html#native-installation-ubuntu-16-04">Native Installation (Ubuntu 16.04)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ODMinstallation.html#setting-environment-variables">Setting environment variables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="using.html#docker">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using.html#native">Native</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using.html#command-line-arguments">Command Line Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using.html#ground-control-points">Ground Control Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using.html#tutorials">Tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="using.html#creating-high-quality-orthophotos">Creating High Quality Orthophotos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using.html#creating-digital-terrain-models">Creating Digital Terrain Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="using.html#video-reconstruction-developers-only">Video Reconstruction (Developers Only)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="using.html#building-with-slam-support">Building with SLAM support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using.html#calibrating-the-camera">Calibrating the camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using.html#running-opendronemap-from-a-video">Running OpenDroneMap from a video</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="using.html#camera-calibration">Camera Calibration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="using.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using.html#usage-calibrate-chessboard">Usage: Calibrate chessboard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using.html#usage-undistort-photos">Usage: undistort photos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using.html#docker-usage-for-undistorting-images">Docker Usage for undistorting images</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="outputs.html">Outputs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="outputs.html#point-cloud">Point Cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outputs.html#d-textured-model">3D Textured Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outputs.html#orthophoto">Orthophoto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outputs.html#dtm-dsm">DTM/DSM</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="large.html">Splitting Large Datasets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="large.html#calibrate-images">Calibrate images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="large.html#local-split-merge">Local Split-Merge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="large.html#distributed-split-merge">Distributed Split-Merge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="large.html#limitations">Limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="large.html#aknowledgments">Aknowledgments</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Code Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flying.html">Flying tips</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">How to contribute</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#community-forum">Community Forum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#reporting-bugs">Reporting Bugs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#template-for-submitting-bug-reports">Template For Submitting Bug Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#pull-requests">Pull Requests</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OpenDroneMap</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Search</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <noscript>
+  <div id="fallback" class="admonition warning">
+    <p class="last">
+      Please activate JavaScript to enable the search
+      functionality.
+    </p>
+  </div>
+  </noscript>
+
+  
+  <div id="search-results">
+  
+  </div>
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, OpenDroneMap.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.6',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/searchtools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+  <script type="text/javascript">
+    jQuery(function() { Search.loadIndex("searchindex.js"); });
+  </script>
+  
+  <script type="text/javascript" id="searchindexloader"></script>
+   
+
+
+</body>
+</html>

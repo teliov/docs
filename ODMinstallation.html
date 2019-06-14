@@ -1,0 +1,397 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ODM Installation &mdash; OpenDroneMap 0.6 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="OpenDroneMap 0.6 documentation" href="index.html"/>
+        <link rel="next" title="Usage" href="using.html"/>
+        <link rel="prev" title="Welcome to OpenDroneMap’s documentation!" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> OpenDroneMap
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ODM Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#hardware-recommendations">Hardware Recommendations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docker-installation-cross-platform">Docker Installation (cross-platform)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install-docker-on-windows">Install Docker on Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-docker-on-macos-linux">Install Docker on macOS/Linux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-odm-webodm">Running ODM/WebODM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build-your-docker-image">Build your docker image</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#native-installation-ubuntu-16-04">Native Installation (Ubuntu 16.04)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#setting-environment-variables">Setting environment variables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="using.html#docker">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using.html#native">Native</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using.html#command-line-arguments">Command Line Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using.html#ground-control-points">Ground Control Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using.html#tutorials">Tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="using.html#creating-high-quality-orthophotos">Creating High Quality Orthophotos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using.html#creating-digital-terrain-models">Creating Digital Terrain Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="using.html#video-reconstruction-developers-only">Video Reconstruction (Developers Only)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="using.html#building-with-slam-support">Building with SLAM support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using.html#calibrating-the-camera">Calibrating the camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using.html#running-opendronemap-from-a-video">Running OpenDroneMap from a video</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="using.html#camera-calibration">Camera Calibration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="using.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using.html#usage-calibrate-chessboard">Usage: Calibrate chessboard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using.html#usage-undistort-photos">Usage: undistort photos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using.html#docker-usage-for-undistorting-images">Docker Usage for undistorting images</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="outputs.html">Outputs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="outputs.html#point-cloud">Point Cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outputs.html#d-textured-model">3D Textured Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outputs.html#orthophoto">Orthophoto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outputs.html#dtm-dsm">DTM/DSM</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="large.html">Splitting Large Datasets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="large.html#calibrate-images">Calibrate images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="large.html#local-split-merge">Local Split-Merge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="large.html#distributed-split-merge">Distributed Split-Merge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="large.html#limitations">Limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="large.html#aknowledgments">Aknowledgments</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Code Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flying.html">Flying tips</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">How to contribute</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#community-forum">Community Forum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#reporting-bugs">Reporting Bugs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#template-for-submitting-bug-reports">Template For Submitting Bug Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#pull-requests">Pull Requests</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OpenDroneMap</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>ODM Installation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/ODMinstallation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="odm-installation">
+<h1>ODM Installation<a class="headerlink" href="#odm-installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="hardware-recommendations">
+<h2>Hardware Recommendations<a class="headerlink" href="#hardware-recommendations" title="Permalink to this headline">¶</a></h2>
+<p>OpenDroneMap is built on Ubuntu 16.04 but can be run on other major platforms using Docker.</p>
+<p>Minimum 4GB of RAM, recommended 16GB or more. Many parts of the ODM toolchain are parallelized, and memory requirements will increase as the size of the input data increases.</p>
+</div>
+<div class="section" id="docker-installation-cross-platform">
+<span id="docker-installation"></span><h2>Docker Installation (cross-platform)<a class="headerlink" href="#docker-installation-cross-platform" title="Permalink to this headline">¶</a></h2>
+<p>We recommend people use <a class="reference external" href="https://www.docker.com">docker</a> for running ODM, whether you are on Windows, macOS or Linux.</p>
+<div class="section" id="install-docker-on-windows">
+<h3>Install Docker on Windows<a class="headerlink" href="#install-docker-on-windows" title="Permalink to this headline">¶</a></h3>
+<p>Before you start, check that your CPU supports virtualization! Sometimes this is disabled from the BIOS. The feature is often called “VT-X” and needs to be enabled. On Windows 8 or higher you can check if virtualization is enabled by opening the Task Manager –&gt; Performance tab. The “Virtualization” field of your CPU should read “enabled”. On Windows 7 you can use <a class="reference external" href="http://www.microsoft.com/en-us/download/details.aspx?id=592">this tool</a> instead.</p>
+<p>Now we can install docker:</p>
+<blockquote>
+<div><ul class="simple">
+<li>If you are on Windows 10 Home, Windows 8 (any version) or Windows 7 (any version), use Docker Toolbox: <a class="reference external" href="https://github.com/docker/toolbox/releases/download/v18.09.3/DockerToolbox-18.09.3.exe">https://github.com/docker/toolbox/releases/download/v18.09.3/DockerToolbox-18.09.3.exe</a></li>
+<li>If you are on Windows 10 Professional or a newer version use Docker for Windows instead: <a class="reference external" href="https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe">https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe</a></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="install-docker-on-macos-linux">
+<h3>Install Docker on macOS/Linux<a class="headerlink" href="#install-docker-on-macos-linux" title="Permalink to this headline">¶</a></h3>
+<p>Docker installation on macOS and Linux is straightforward.</p>
+<blockquote>
+<div><ul>
+<li><p class="first">For macOS simply download the Docker for Mac installer from <a class="reference external" href="https://download.docker.com/mac/stable/Docker.dmg">https://download.docker.com/mac/stable/Docker.dmg</a></p>
+</li>
+<li><p class="first">For Linux simply use the the docker install script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">fsSL</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">get</span><span class="o">.</span><span class="n">docker</span><span class="o">.</span><span class="n">com</span> <span class="o">-</span><span class="n">o</span> <span class="n">get</span><span class="o">-</span><span class="n">docker</span><span class="o">.</span><span class="n">sh</span>
+<span class="n">sh</span> <span class="n">get</span><span class="o">-</span><span class="n">docker</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="running-odm-webodm">
+<h3>Running ODM/WebODM<a class="headerlink" href="#running-odm-webodm" title="Permalink to this headline">¶</a></h3>
+<p>With docker installed, see the <a class="reference internal" href="using.html#docker-usage"><span class="std std-ref">Docker</span></a> usage page on using ODM.</p>
+<p>Before running ODM it’s advised to check that Docker is allocating sufficient resources to containers. In Windows this can be done in the ‘Docker for Windows’ program under the ‘Advanced’ tab.</p>
+<p>ODM is a command line utility. We also have a graphical interface called <a class="reference external" href="https://github.com/OpenDroneMap/WebODM">WebODM</a>. To install it, make sure you have installed <a class="reference external" href="https://git-scm.com/downloads/">git</a> and <a class="reference external" href="https://www.python.org/downloads/">python</a>. Then launch a shell (macOS/Linux) or <code class="docutils literal notranslate"><span class="pre">Git</span> <span class="pre">Bash</span></code> (Windows) from the start menu (<strong>not</strong> a command prompt/powershell) and simply type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">OpenDroneMap</span><span class="o">/</span><span class="n">WebODM</span>  <span class="o">--</span><span class="n">config</span> <span class="n">core</span><span class="o">.</span><span class="n">autocrlf</span><span class="o">=</span><span class="nb">input</span> <span class="o">--</span><span class="n">depth</span> <span class="mi">1</span>
+<span class="n">cd</span> <span class="n">WebODM</span><span class="o">/</span>
+<span class="o">./</span><span class="n">webodm</span><span class="o">.</span><span class="n">sh</span> <span class="n">start</span>
+</pre></div>
+</div>
+<p>See the <a class="reference external" href="https://github.com/OpenDroneMap/WebODM">WebODM project README</a> for other useful commands.</p>
+</div>
+<div class="section" id="build-your-docker-image">
+<h3>Build your docker image<a class="headerlink" href="#build-your-docker-image" title="Permalink to this headline">¶</a></h3>
+<p>Download and extract the latest version of ODM: <a class="reference external" href="https://github.com/OpenDroneMap/ODM/archive/master.zip">https://github.com/OpenDroneMap/ODM/archive/master.zip</a></p>
+<p>In Docker toolbox or Docker CE, navigate to your extracted ODM directory. Then build the Docker image.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">Documents</span><span class="o">/</span><span class="n">OpenDroneMap_v0_3_1</span><span class="o">/</span>
+<span class="n">docker</span> <span class="n">build</span> <span class="o">-</span><span class="n">t</span> <span class="n">my_odm_image</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>When building your own Docker image, if image size is of importance to you, you should use the <code class="docutils literal notranslate"><span class="pre">--squash</span></code> flag, like so::</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">build</span> <span class="o">--</span><span class="n">squash</span> <span class="o">-</span><span class="n">t</span> <span class="n">my_odm_image</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>This will clean up intermediate steps in the Docker build process, resulting in a significantly smaller image (about half the size).</p>
+<p>Experimental flags need to be enabled in Docker to use the <code class="docutils literal notranslate"><span class="pre">--squash</span></code> flag. To enable this, insert the following into the file /etc/docker/daemon.json::</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;experimental&quot;</span><span class="p">:</span> <span class="n">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>After this, you must restart docker by typing <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">service</span> <span class="pre">docker</span> <span class="pre">restart</span></code> into your Linux terminal.</p>
+<p>Once this is done, go to <a class="reference internal" href="using.html#docker-usage"><span class="std std-ref">Docker</span></a></p>
+</div>
+</div>
+<div class="section" id="native-installation-ubuntu-16-04">
+<span id="native-installation"></span><h2>Native Installation (Ubuntu 16.04)<a class="headerlink" href="#native-installation-ubuntu-16-04" title="Permalink to this headline">¶</a></h2>
+<p>Download and extract the latest version of ODM: <a class="reference external" href="https://github.com/OpenDroneMap/ODM/archive/master.zip">https://github.com/OpenDroneMap/ODM/archive/master.zip</a></p>
+<p>The installation is simple:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bash</span> <span class="n">configure</span><span class="o">.</span><span class="n">sh</span> <span class="n">install</span>
+</pre></div>
+</div>
+<p>configure.sh can take up to 2 arguments</p>
+<dl class="docutils">
+<dt>configure.sh command [n]</dt>
+<dd><p class="first">command: can be one of (install, reinstall, uninstall, usage)</p>
+<p class="last">[n] is an optional argument that will set the number of processes for the compiler</p>
+</dd>
+</dl>
+<div class="section" id="setting-environment-variables">
+<h3>Setting environment variables<a class="headerlink" href="#setting-environment-variables" title="Permalink to this headline">¶</a></h3>
+<p>Using your favorite editor, open <cite>~/.bashrc</cite> and append the following to the bottom of the file (replace /your/path/OpenDroneMap with your installation path, e.g. /home/user/OpenDroneMap):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export PYTHONPATH=$PYTHONPATH:/your/path/OpenDroneMap/SuperBuild/install/lib/python2.7/dist-packages
+export PYTHONPATH=$PYTHONPATH:/your/path/OpenDroneMap/SuperBuild/src/opensfm
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/your/path/OpenDroneMap/SuperBuild/install/lib
+</pre></div>
+</div>
+<p>You will need to log out and back in again for the variables to set.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="using.html" class="btn btn-neutral float-right" title="Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Welcome to OpenDroneMap’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, OpenDroneMap.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.6',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
